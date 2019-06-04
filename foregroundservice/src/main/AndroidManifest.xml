@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.epsit.foregroundservice">
+
+    <application
+        android:allowBackup="true"
+        android:name=".KeepAliveApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".service.DaemonService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":daemon_service"/>
+
+
+        <service android:name=".service.CancelNoticeService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":service"/>
+
+
+        <service android:name=".service.DownloadService">
+        </service>
+
+        <service android:name=".service.GuardService" android:process=":GuardService">
+        </service>
+
+        <service android:name=".service.StepService" android:process=":StepService">
+        </service>
+
+        <activity android:name=".SinglePixelActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:theme="@style/SingleActivityStyle"/>
+        <service
+            android:name=".service.PlayerMusicService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":music_service" />
+    </application>
+
+</manifest>
